@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Employers() {
+export default function SignUpPage() {
     return (
         <div>
-            
+            Kayıt ekranı
         </div>
     )
 }
