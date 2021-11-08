@@ -1,5 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
 .App {
   text-align: center;
+}
+
+.homePage .header {
+  background: #912da1 no-repeat 50% 0;
+}
+
+.homePage {
+  background-image: url(https://aday-spage.mncdn.com/Knet_img_cizim.eb8015c.svg?v=p1026162813125);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  min-height: 600px;
+}
+
+body {
+  background-color: #f9f9f9 !important;
+}
+
+.job-advs .job-card:hover {
+  border: 1px solid gray;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+.job-detail {
+  font-family: "Rubik", sans-serif !important;
+  color: black !important;
+  /* float: left; */
+  text-align: initial;
+  font-size: 16px;
+}
+
+.employer {
+  background-color: #6388ca !important;
+}
+
+.navi {
+  font-family: "Rubik", sans-serif;
 }
 
 .ui.main.container {
