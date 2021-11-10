@@ -1,13 +1,12 @@
 import { Form, Formik } from "formik";
 import React, { useState, useEffect } from "react";
-import { Route, useHistory } from "react-router";
-import { Button } from "semantic-ui-react";
+import { useHistory } from "react-router";
+import { Button, Grid, Segment } from "semantic-ui-react";
 import * as yup from "yup";
 import HrmsInput from "../../../utilities/customFormControls/HrmsInput";
 import JobSeekerService from "../../../services/jobSeekerService";
-import Navi from "../../../layouts/Navi";
 import Cookies from "js-cookie";
-import HomePage from "../../HomePage";
+import alertify from "alertifyjs";
 
 export default function SignInPage() {
   const [isAuthenticated, setisAuthenticated] = useState(false);
@@ -27,8 +26,14 @@ export default function SignInPage() {
   const onSubmit = (values) => {
     jobSeekerService
       .findByEmailAndPassword(values.email, values.password)
-      .then((result) => setSignValues(result.data.data));
-      window.location.reload()
+      .then((result) => {
+        if (result.data.data == null) {
+          alertify.alert("Error", "Please enter the information correctly!");
+        } else {
+          setSignValues(result.data.data);
+          window.location.reload();
+        }
+      });
   };
 
   const readCookie = () => {
@@ -42,7 +47,7 @@ export default function SignInPage() {
 
     if (userName) {
       setisAuthenticated(true);
-      history.push("/")
+      history.push("/");
     }
   };
 
@@ -51,20 +56,34 @@ export default function SignInPage() {
   });
 
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={onSubmit}
-      >
-        <Form className="ui form">
-          <HrmsInput name="email" placeholder="Email" />
-          <HrmsInput name="password" placeholder="Password" />
-          <Button color="green" type="submit">
-            Sign In
-          </Button>
-        </Form>
-      </Formik>
+    <div className="signInPage">
+      <Grid columns={4} textAlign="center">
+        <Grid.Row verticalAlign="middle">
+          <Grid.Column>
+            <Segment>
+              <Formik
+                initialValues={initialValues}
+                validationSchema={schema}
+                onSubmit={onSubmit}
+              >
+                <Form className="ui form">
+                  <div class="field">
+                    <HrmsInput name="email" placeholder="Email" />
+                  </div>
+                  <div class="field">
+                    <HrmsInput type="password" name="password" placeholder="Password" />
+                  </div>
+                  <div class="field">
+                    <Button color="green" type="submit">
+                      Sign In
+                    </Button>
+                  </div>
+                </Form>
+              </Formik>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 }

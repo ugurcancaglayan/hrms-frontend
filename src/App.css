@@ -4,11 +4,23 @@
   text-align: center;
 }
 
+Button {
+  background: #912da1 !important;
+}
+
 .homePage .header {
   background: #912da1 no-repeat 50% 0;
 }
 
 .homePage {
+  background-image: url(https://aday-spage.mncdn.com/Knet_img_cizim.eb8015c.svg?v=p1026162813125);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+  min-height: 600px;
+}
+
+.jobSeekerPanel {
   background-image: url(https://aday-spage.mncdn.com/Knet_img_cizim.eb8015c.svg?v=p1026162813125);
   background-repeat: no-repeat;
   background-size: contain;
@@ -34,18 +46,50 @@ body {
 }
 
 .employer {
+  font-size: 15px !important;
   background-color: #6388ca !important;
+}
+
+.employer-button {
+  color: #f3f1f1 !important;
+  font-family: "Rubik", sans-serif;
+  font-size: 15.5px;
 }
 
 .navi {
   font-family: "Rubik", sans-serif;
 }
 
+.main {
+  margin-top: 7rem;
+}
+
+.other-advs {
+  background: none !important;
+}
+
+.apply-job {
+  background: #f3f1f1;
+  padding: 20px;
+  text-align: center;
+  margin-top: -3.4rem;
+}
+
+.title {
+  color: #912da1;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.job-advs-detail {
+  margin: 30px;
+}
+
 .ui.main.container {
   margin-top: 6em;
 }
 
-.signUp {
+.signUp, .signIn{
   background-color: #912da1 !important;
 }
 

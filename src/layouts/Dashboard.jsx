@@ -17,9 +17,6 @@ export default function Dashboard() {
       <Route path="/jobAdvertisements">
         <Grid>
           <Grid.Row>
-            {/* <Grid.Column width={4}>
-              <Sidebar />
-            </Grid.Column> */}
             <Grid.Column width={16}>
               <Route
                 exact
@@ -36,7 +33,7 @@ export default function Dashboard() {
       </Route>
       <Route path="/jobseekers">
         <Grid>
-          <Grid.Row>
+          <Grid.Row className="jobSeekerPanel">
             <Grid.Column width={16}>
               <Route path="/jobseekers/login" component={SignInPage} />
               <Route path="/jobseekers/signup" component={SignUpPage} />

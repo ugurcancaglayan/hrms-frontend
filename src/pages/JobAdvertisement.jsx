@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
+  Container,
   Divider,
   Form,
   Grid,
@@ -59,6 +60,10 @@ export default function JobAdvertisement({ signedIn }) {
     }
   }, []);
 
+  if (jobs) {
+    localStorage.setItem("jobAdvs", JSON.stringify(jobs));
+  }
+
   var cityList = [];
   cities.map((city) =>
     cityList.push({
@@ -100,102 +105,109 @@ export default function JobAdvertisement({ signedIn }) {
 
   return (
     <div className="job-advs">
-      <h2 style={{ textAlign: "initial" }}>{jobs.length} Job Ads</h2>
+      <Container>
+        <h2 style={{ textAlign: "initial" }}>{jobs.length} Job Ads</h2>
 
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={4}>
-            <Segment>
-              <Button
-                style={{ backgroundColor: "#912da1", color: "#fff" }}
-                onClick={handleSorted}
-              >
-                Sort By Date
-              </Button>
-              <Divider />
-              <Form>
-                <Form.Select
-                  style={{ marginBottom: "1em" }}
-                  name="city"
-                  placeholder="City"
-                  options={cityList}
-                  onChange={(event, data) => handleCity(data.value)}
-                />
-                <Form.Select
-                  style={{ marginBottom: "1em" }}
-                  name="workType"
-                  placeholder="Work Type"
-                  options={workTypeList}
-                  onChange={(event, data) => handleWorkType(data.value)}
-                />
-                <Form.Select
-                  style={{ marginBottom: "1em" }}
-                  name="workTime"
-                  placeholder="Work Time"
-                  options={workTimeList}
-                  onChange={(event, data) => handleWorkTime(data.value)}
-                />
-              </Form>
-              
-              <Button
-                fluid
-                style={{ backgroundColor: "#912da1", color: "#fff" }}
-                onClick={filterJobs}
-              >
-                Filter
-              </Button>
-              <Button
-                fluid
-                style={{
-                  backgroundColor: "#912da1",
-                  color: "#fff",
-                  marginTop: "1em",
-                }}
-                onClick={() => window.location.reload()}
-              >
-                Clear Filter
-              </Button>
-            </Segment>
-          </Grid.Column>
-          <Grid.Column width={12}>
-             {jobs.map((job) => (
-              <Segment key={job.id} className="job-card">
-                <Link to={`/jobAdvertisements/${job.id}`}>
-                  <Item.Group>
-                    <Item>
-                      <Item.Image
-                        size="tiny"
-                       src="https://react.semantic-ui.com/images/wireframe/image.png"
-                      />
-                      <Item.Content style={{ textAlign: "justify" }}>
-                        <Item.Header as="a">
-                          {job.jobPosition.position}
-                        </Item.Header>
-                        <Item.Description>{job.city.cityName}</Item.Description>
-                        <Item.Meta>{job.employer.companyName}</Item.Meta>
-                        <br />
-                        <span
-                          style={{ color: "#333", backgroundColor: "#f5f5f5" }}
-                        >
-                          {job.workTime.workTime}
-                        </span>
-                        <span
-                          style={{
-                            float: "right",
-                            color: "black",
-                          }}
-                        >
-                          {moment(job.createdDate).format("DD MMMM YYYY")}
-                        </span>
-                      </Item.Content>
-                    </Item>
-                  </Item.Group>
-                </Link>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={4}>
+              <Segment>
+                <Button
+                  style={{ backgroundColor: "#912da1", color: "#fff" }}
+                  onClick={handleSorted}
+                >
+                  Sort By Date
+                </Button>
+                <Divider />
+                <Form>
+                  <Form.Select
+                    style={{ marginBottom: "1em" }}
+                    name="city"
+                    placeholder="City"
+                    options={cityList}
+                    onChange={(event, data) => handleCity(data.value)}
+                  />
+                  <Form.Select
+                    style={{ marginBottom: "1em" }}
+                    name="workType"
+                    placeholder="Work Type"
+                    options={workTypeList}
+                    onChange={(event, data) => handleWorkType(data.value)}
+                  />
+                  <Form.Select
+                    style={{ marginBottom: "1em" }}
+                    name="workTime"
+                    placeholder="Work Time"
+                    options={workTimeList}
+                    onChange={(event, data) => handleWorkTime(data.value)}
+                  />
+                </Form>
+
+                <Button
+                  fluid
+                  style={{ backgroundColor: "#912da1", color: "#fff" }}
+                  onClick={filterJobs}
+                >
+                  Filter
+                </Button>
+                <Button
+                  fluid
+                  style={{
+                    backgroundColor: "#912da1",
+                    color: "#fff",
+                    marginTop: "1em",
+                  }}
+                  onClick={() => window.location.reload()}
+                >
+                  Clear Filter
+                </Button>
               </Segment>
-            ))}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+            </Grid.Column>
+            <Grid.Column width={12}>
+              {jobs.map((job) => (
+                <Segment key={job.id} className="job-card">
+                  <Link to={`/jobAdvertisements/${job.id}`}>
+                    <Item.Group>
+                      <Item>
+                        <Item.Image
+                          size="tiny"
+                          src="https://react.semantic-ui.com/images/wireframe/image.png"
+                        />
+                        <Item.Content style={{ textAlign: "justify" }}>
+                          <Item.Header as="a">
+                            {job.jobPosition.position}
+                          </Item.Header>
+                          <Item.Description>
+                            {job.city.cityName}
+                          </Item.Description>
+                          <Item.Meta>{job.employer.companyName}</Item.Meta>
+                          <br />
+                          <span
+                            style={{
+                              color: "#333",
+                              backgroundColor: "#f5f5f5",
+                            }}
+                          >
+                            {job.workTime.workTime}
+                          </span>
+                          <span
+                            style={{
+                              float: "right",
+                              color: "black",
+                            }}
+                          >
+                            {moment(job.createdDate).format("DD MMMM YYYY")}
+                          </span>
+                        </Item.Content>
+                      </Item>
+                    </Item.Group>
+                  </Link>
+                </Segment>
+              ))}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
     </div>
   );
 }
