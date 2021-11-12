@@ -13,7 +13,7 @@ export default function Navi() {
 
   function handleSignOut() {
     setisAuthenticated(false);
-    Cookies.remove("userName");
+    Cookies.remove("user");
     // history.push("/");
     window.location.reload()
   }
@@ -37,7 +37,7 @@ export default function Navi() {
           <Menu.Item header as={Link} to="/jobAdvertisements" name="Job Ads" />
           <Menu.Item header name="Resumes" />
           <Menu.Menu position="right">
-            {Cookies.get("userName") ? (
+            {Cookies.get("user") ? (
               <SignedIn signOut={handleSignOut} />
             ) : (
               <SignedOut signIn={handleSignIn} />

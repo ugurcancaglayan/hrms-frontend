@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 .App {
   text-align: center;
@@ -8,16 +9,34 @@ Button {
   background: #912da1 !important;
 }
 
-.homePage .header {
+/* .homePage .header {
   background: #912da1 no-repeat 50% 0;
-}
+} */
 
-.homePage {
+/* .homePage {
   background-image: url(https://aday-spage.mncdn.com/Knet_img_cizim.eb8015c.svg?v=p1026162813125);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 50%;
   min-height: 600px;
+} */
+
+.homepage-block {
+  background: #840eb6;
+  padding: 100px;
+  text-align: center;
+  margin-top: -2rem;
+}
+
+.job-cards {
+  margin-top: 5rem;
+}
+
+.homepage-title {
+  margin: 0;
+  padding: 30 px 0;
+  font-family: "roboto";
+  color: #fff;
 }
 
 .jobSeekerPanel {
@@ -72,7 +91,7 @@ body {
   background: #f3f1f1;
   padding: 20px;
   text-align: center;
-  margin-top: -3.4rem;
+  margin-top: -4.2rem;
 }
 
 .title {
@@ -89,7 +108,8 @@ body {
   margin-top: 6em;
 }
 
-.signUp, .signIn{
+.signUp,
+.signIn {
   background-color: #912da1 !important;
 }
 

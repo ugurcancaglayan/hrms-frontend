@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -15,7 +16,7 @@ import JobAdvertisementService from "../services/jobAdvertisementService";
 import WorkTimeService from "../services/workTimeService";
 import WorkTypeService from "../services/workTypeService";
 
-export default function JobAdvertisement({ signedIn }) {
+export default function JobAdvertisement() {
   const [jobs, setJobs] = useState([]);
 
   const [cities, setCities] = useState([]);
@@ -62,6 +63,7 @@ export default function JobAdvertisement({ signedIn }) {
 
   if (jobs) {
     localStorage.setItem("jobAdvs", JSON.stringify(jobs));
+    Cookies.set("jobNum", jobs.length);
   }
 
   var cityList = [];

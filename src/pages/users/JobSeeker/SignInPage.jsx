@@ -38,14 +38,11 @@ export default function SignInPage() {
 
   const readCookie = () => {
     if (signValues) {
-      Cookies.set("userName", signValues.firstName);
-      Cookies.set("userMail", signValues.email);
-      console.log(Cookies.get("userName"));
+      Cookies.set("user", JSON.stringify(signValues));
     }
 
-    const userName = Cookies.get("userName");
-
-    if (userName) {
+    const user = Cookies.get("user");
+    if (user) {
       setisAuthenticated(true);
       history.push("/");
     }
@@ -71,7 +68,11 @@ export default function SignInPage() {
                     <HrmsInput name="email" placeholder="Email" />
                   </div>
                   <div class="field">
-                    <HrmsInput type="password" name="password" placeholder="Password" />
+                    <HrmsInput
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                    />
                   </div>
                   <div class="field">
                     <Button color="green" type="submit">

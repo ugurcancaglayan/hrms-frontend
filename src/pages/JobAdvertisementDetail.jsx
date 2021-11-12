@@ -5,13 +5,7 @@ import {
   Divider,
   Grid,
   Icon,
-  Image,
   Item,
-  ItemDescription,
-  ItemGroup,
-  ItemHeader,
-  ItemMeta,
-  Label,
   Segment,
 } from "semantic-ui-react";
 import { useParams } from "react-router";
@@ -26,8 +20,6 @@ export default function JobAdvertisementDetail() {
   const [jobAdv, setJobAdv] = useState({});
   const [clicked, setClicked] = useState(false);
 
-  const result = localStorage.getItem("jobAdvs");
-
   useEffect(() => {
     let jobAdvertisementService = new JobAdvertisementService();
     jobAdvertisementService
@@ -40,19 +32,19 @@ export default function JobAdvertisementDetail() {
     window.location.reload();
   }
 
-  var arr = JSON.parse(result);
-  var jobList = [];
   var counter = 0;
-  arr.map((job) => {
+  var jobCounter = 0;
+
+  var jobList = [];
+
+  const result = localStorage.getItem("jobAdvs");
+
+  JSON.parse(result).map((job) => {
     if (counter < 3) {
       jobList.push(job);
-      console.log(jobList);
       counter += 1;
     }
   });
-  var jobCounter = 0;
-  var arrCounter = 0;
-  var BreakException = {};
 
   return (
     <div id={jobAdv.id} className="job-detail" style={{ marginTop: "2em" }}>
@@ -136,7 +128,6 @@ export default function JobAdvertisementDetail() {
                 <div className="title">Other Ads You May Interested In</div>
                 {jobList.map(
                   (job) => (
-                    (arrCounter += 1),
                     (jobCounter += 1),
                     (
                       <Link
@@ -153,7 +144,9 @@ export default function JobAdvertisementDetail() {
                               <Item.Header as="a">
                                 {job.jobPosition.position.toUpperCase()}
                               </Item.Header>
-                              <Item.Meta>{job.employer.companyName.toUpperCase()}</Item.Meta>
+                              <Item.Meta>
+                                {job.employer.companyName.toUpperCase()}
+                              </Item.Meta>
                               <Item.Extra>{job.city.cityName}</Item.Extra>
                             </Item.Content>
                           </Item>

@@ -3,6 +3,7 @@ import "semantic-ui-css/semantic.min.css";
 import Navi from "./layouts/Navi";
 import Dashboard from "./layouts/Dashboard";
 import { Container } from "semantic-ui-react";
+import Cookies from "js-cookie";
 
 function App() {
   return (

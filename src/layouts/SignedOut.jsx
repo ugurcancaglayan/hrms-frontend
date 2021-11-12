@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Menu } from "semantic-ui-react";
-import { RiArrowDropDownLine } from "react-icons/ri";
 
 export default function SignedOut({ signIn }) {
   return (

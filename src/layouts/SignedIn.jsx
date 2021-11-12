@@ -14,7 +14,7 @@ export default function SignedIn({ signOut }) {
         />
         <Dropdown
           pointing
-          text={Cookies.get("userName")}
+          text={JSON.parse(Cookies.get("user")).firstName}
         >
           <Dropdown.Menu>
             <Dropdown.Item text="Profilim" />
